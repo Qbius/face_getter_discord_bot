@@ -6,7 +6,7 @@ const jimp = require('jimp');
 const gen_uuid = require('uuid/v4');
 const fs = require('fs');
 
-const api_key = fs.readFileSync('facerect_api_token').toString();
+const api_key = fs.readFileSync('facerect_api_token').toString().replace('\n', '');
 const generate_options = img_url => ({
     method: 'GET',
     url: 'https://apicloud-facerect.p.rapidapi.com/process-url.json',
@@ -38,4 +38,4 @@ client.on("message", message => {
     });
 });
 
-client.login(fs.readFileSync('faceit_token').toString());
+client.login(fs.readFileSync('faceit_token').toString().replace('\n', ''));
