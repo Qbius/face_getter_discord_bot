@@ -21,7 +21,6 @@ const generate_options = img_url => ({
 
 client.on("message", message => {
     if (message.author.bot || message.attachments.size === 0) return;
-    console.log("got valid message");
 
     const img_url = message.attachments.first().url;
     const filename = gen_uuid() + ".png";
@@ -29,11 +28,7 @@ client.on("message", message => {
     request(generate_options(img_url), (err, a, body) => {
         if (err) return;
 
-        console.log(err);
-        console.log(a);
-        console.log(body);
         const {faces: [face, ..._rest]} = JSON.parse(body);
-        console.log(face);
 
         jimp.read(img_url)
             .then(jimp_img => jimp_img.crop(face.x, face.y, face.width, face.height).writeAsync(filename))
