@@ -1,3 +1,4 @@
 node_modules/**/*
 faceit_token
 facerect_api_token
+package-lock.json
